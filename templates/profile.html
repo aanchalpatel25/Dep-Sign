@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Profile</title>
+
+</head>
+
+<body>
+    {% url 'quiz' as q %}
+    {% url 'home' as h %}
+    <section class="container ">
+        <div class="center">
+            <h3 style="text-align: center;margin-bottom: 10px; color: #0b86e5;">Profile Details</h3>
+            {% for p in details %}
+            <div style="display: flex; align-items: center; flex-direction: row;justify-content: center;">
+                <h4 style="padding: 10px 25px;"><span style="color: #0b86e5;">First Name : </span>{{p.fname}}</h4>
+                <h4 style="padding: 10px 25px;"><span style="color: #0b86e5;">Last Name : </span>{{p.lname}}</h4>
+                <h4 style="padding: 10px 25px;"><span style="color: #0b86e5;">Email Address : </span>{{p.email}}</h4>
+                <h4 style="padding: 10px 25px;"><span style="color: #0b86e5;">Username : </span>{{p.username}}</h4>
+
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="container ">
+        {% if tests %}
+    
+        <div class="center ">
+            <h3 style="text-align: center;margin-bottom: 10px; color: #0b86e5;">Your past responses</h3>
+            <table style="border-radius: 5px;">
+
+                <tr>
+                    <th>DateTime</th>
+                    <th>Answer1</th>
+                    <th>Answer2</th>
+                    <th>Answer3</th>
+                    <th>Answer4</th>
+                    <th>Answer5</th>
+                    <th>Answer6</th>
+                    <th>Answer7</th>
+                    <th>Answer8</th>
+                    <th>Answer9</th>
+                    <th>Answer10</th>
+                    <th>Result</th>
+                </tr>
+
+                {% for q in tests %}
+                <tr class="hover-link">
+
+                    <td>{{q.date}}</td>
+                    <td>Option{{q.answer2}}</td>
+                    <td>Option{{q.answer3}}</td>
+                    <td>Option{{q.answer4}}</td>
+                    <td>Option{{q.answer1}}</td>
+                    <td>Option{{q.answer5}}</td>
+                    <td>Option{{q.answer6}}</td>
+                    <td>Option{{q.answer7}}</td>
+                    <td>Option{{q.answer8}}</td>
+                    <td>Option{{q.answer9}}</td>
+                    <td>Option{{q.answer10}}</td>
+                    <td>{{q.result}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="center">
+            <p>These results are not meant to be a diagnosis. You can meet with a doctor or therapist to get a diagnosis
+                and/or access therapy or medications. Sharing these results with someone you trust can be a great place
+                to start.</p>
+
+        </div>
+
+        {% else %}
+
+        <h3 style="text-align: center;margin: 20px; color: #0b86e5;">Know your Depression status: <a href="{{q}}"
+                class="hover-link primary-button ">Give Test</a></h3>
+
+        {% endif %}
+
+
+        
+        <div class="center " style="display: flex; align-items: center; flex-direction: row;justify-content: center;">
+            <p><a href="{{h}}" class="hover-link primary-button ">Home</a></p>
+            <p><a href="{{q}}" class="hover-link primary-button ">Back to quiz</a></p>
+            <p><a href="/signout" class="hover-link primary-button ">SignOut</a></p>
+        </div>
+    </section>
+
+</body>
+
+</html>
+{% endblock %}

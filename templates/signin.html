@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="/static/css/signin.css">
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == 'error' %}
+    <p style="text-align: center; color: red; margin-top: 115px; font-size: 16px;font-weight: bold;">: {{message}} </p>
+    {% else %}
+    <p style="text-align: center; color: #2294ed; margin-top: 115px; font-size: 16px; font-weight: bold;">: {{message}} </p>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    <div class="center">
+        <h1>DepSign</h1>
+        <form method="post" autocomplete="off" >
+            {% csrf_token %}
+            <div class="txt_field">
+                <input type="text" name="username" required>
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="pass">Forgot Password?</div>
+            <input type="submit" value="SignIn">
+            {% url 'signup' as up %}
+            <div class="signup_link">
+                Not a member? <a href="{{up}}">SignUp</a>
+            <!-- </div>
+            {% url 'index' as i %}
+            <div class="back"><a href="{{i}}">Back</a></div> -->
+        </form>
+    </div>
+
+</body>
+
+</html>

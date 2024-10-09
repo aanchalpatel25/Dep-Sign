@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Based Test</title>
+    <!-- <style>
+
+    </style> -->
+
+</head>
+
+<body>
+    <h3 style="text-align: center;margin-bottom: 10px; color: #0b86e5;">3 MINUTE DEPRESSION TEST</h3>
+    <section class="container">
+        <p class="container" style="margin-bottom: 20px;"> <span
+                style="font-weight: bold;color: black;">Instructions:</span> Beside is a list of questions that relate
+            to life experiences common among people who have been diagnosed with depression. Please read each question
+            carefully, and indicate how often you
+            have experienced the same or similar challenges in the past few months.</p>
+    </section>
+    <section class="container ">
+
+        <div class="center ">
+            <h2 style="text-align: center;">Start Quiz</h2>
+            <form method="post" autocomplete="off" action="">
+                {% csrf_token %}
+                {% for i in question %}
+                <div class="center">
+                    <ul class="quiz">
+                        <li>
+                            <h4 style="color: #0b86e5; font-size: 18px;">{{i.questions}}</h4>
+                            <ul style="text-align: center;margin: 5px; ">
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question{{i.id}}" value="0" /><span
+                                            style="margin-left: 5px;">Not at all</span></label>
+                                </li>
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question{{i.id}}" value="1" /><span
+                                            style="margin-left: 5px;">Several days</span></label>
+                                </li>
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question{{i.id}}" value="2" /><span
+                                            style="margin-left: 5px;">More than half the days</span></label>
+                                </li>
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question{{i.id}}" value="3" /><span
+                                            style="margin-left: 5px;">Nearly every day</span></label>
+                                </li>
+                            </ul>
+                        </li>
+                </div>
+                {% endfor %}
+                <div class="center">
+                    <ul class="quiz">
+                        <li>
+                            <h4 style="color: #0b86e5; font-size: 18px;">If you've had any days with issues above, how
+                                difficult have these problems made it for you at work, home, school, or with other
+                                people?</h4>
+                            <ul style="text-align: center;margin: 5px; ">
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question10" value="0" /><span
+                                            style="margin-left: 5px;">Not difficult at all</span></label>
+                                </li>
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question10" value="1" /><span
+                                            style="margin-left: 5px;">Somewhat difficult</span></label>
+                                </li>
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question10" value="2" /><span
+                                            style="margin-left: 5px;">Very difficult</span></label>
+                                </li>
+                                <li class="margin-between">
+                                    <label><input required type="radio" name="question10" value="3" /><span
+                                            style="margin-left: 5px;">Extremly difficult</span></label>
+                                </li>
+                            </ul>
+                        </li>
+                </div>
+                <input type="submit" value="Submit Response" style="margin: 20px 0;" class="hover-link primary-button">
+
+            </form>
+
+        </div>
+
+    </section>
+    <div>
+        <br><br>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}

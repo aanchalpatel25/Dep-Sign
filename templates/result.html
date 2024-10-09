@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+
+<body>
+    <section class="container">
+        <div class="center">
+            <h3 style="color: #0b86e5; ">You have {{answers}}</h3>
+        </div>
+        <div class="center">
+            <h3 style="color: #0b86e5; ">Your Score:- <span style="color: black;">{{score}}/30</span></h3>
+        </div>
+        <div class="center">
+            <h3 style="color: #0b86e5; ">Your Responses</h3>
+            <div style="text-align: left;">
+                {% for i,j in questions %}
+                {% if j == 0 %}
+                <h4 style="font-size: 15px;">{{i.id}}: {{i.questions}}:- <span
+                        style="color: #0b86e5; font-weight: bold;">Not at all ({{j}})</span></h4>
+                {% elif j == 1 %}
+                <h4 style="font-size: 15px;">{{i.id}}: {{i.questions}}:- <span
+                        style="color: #0b86e5; font-weight: bold;">Several days ({{j}})</span></h4>
+                {% elif j == 2 %}
+                <h4 style="font-size: 15px;">{{i.id}}: {{i.questions}}:- <span
+                        style="color: #0b86e5; font-weight: bold;">More than half the days ({{j}})</span></h4>
+                {% else %}
+                <h4 style="font-size: 15px;">{{i.id}}: {{i.questions}}:- <span
+                        style="color: #0b86e5; font-weight: bold;">Nearly every day ({{j}})</span></h4>
+                {% endif %}
+                {% endfor %}
+                {% if last == 0 %}
+                <h4 style="font-size: 15px;">10: If you've had any days with issues above, how
+                    difficult have these problems made it for you at work, home, school, or with other
+                    people?:- <span style="color: #0b86e5; font-weight: bold;">Not difficult at all ({{last}})</span>
+                </h4>
+                {% elif last == 1 %}
+                <h4 style="font-size: 15px;">10: If you've had any days with issues above, how
+                    difficult have these problems made it for you at work, home, school, or with other
+                    people?:- <span style="color: #0b86e5; font-weight: bold;">Somewhat difficult ({{last}})</span></h4>
+                {% elif last == 2 %}
+                <h4 style="font-size: 15px;">10: If you've had any days with issues above, how
+                    difficult have these problems made it for you at work, home, school, or with other
+                    people?:- <span style="color: #0b86e5; font-weight: bold;">Very difficult ({{last}})</span></h4>
+                {% else %}
+                <h4 style="font-size: 15px;">10: If you've had any days with issues above, how
+                    difficult have these problems made it for you at work, home, school, or with other
+                    people?:- <span style="color: #0b86e5; font-weight: bold;">Extremly difficult ({{last}})</span></h4>
+                {% endif %}
+
+            </div>
+
+        </div>
+        {% if answers != 'No Depression' %}
+        <div class="center">
+            <h4>Your responses indicate that you may be at risk of harming yourself. If you need immediate help, you can
+                reach the Suicide & Crisis Lifeline by calling or texting <span style="color: #0b86e5;">988</span> or
+                using the chat box at <a style="color: #0b86e5;" href="#">988lifeline.org</a>.
+                You can also <span style="color: #0b86e5;">text “DEPSIGN” to 741-741</span> to reach the Crisis Text
+                Line. Warmlines are an excellent place for
+                non-crisis support.</h4>
+        </div>
+        {% endif %}
+        {% url 'quiz' as q %}
+        <div class="center">
+            <p>These results are not meant to be a diagnosis. You can meet with a doctor or therapist to get a diagnosis
+                and/or access therapy or medications. Sharing these results with someone you trust can be a great place
+                to start.</p>
+            <br>
+            <p style="align-items: center;"><a href="{{q}}" class="hover-link primary-button ">Back to quiz</a></p>
+        </div>
+
+
+
+
+    </section>
+
+
+</body>
+
+</html>
+
+{% endblock %}

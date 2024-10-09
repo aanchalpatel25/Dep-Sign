@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/static/css/body.css">
+</head>
+
+<body>
+
+    <!-- nav bar -->
+
+
+    <nav>
+        <div class="container flex main-nav ">
+            {% url 'home' as h %}
+            <a href="{{h}}" class="company-logo">
+                <h3 style="color:#2294ed">DepSign</h3>
+            </a>
+            <div class="nav-links">
+                <ul class="flex">
+                    <li><a href="{{h}}"
+                            class="hover-link semi-bold {% if request.path == h %} active {% endif %}">Home</a></li>
+                    {% url 'quiz' as q %}
+                    <li><a href="{{q}}" class="hover-link semi-bold {% if request.path == q %} active {% endif %}">Quiz
+                            Based Test</a></li>
+                    {% url 'sentiment' as s %}
+                    <li><a href="{{s}}"
+                            class="hover-link semi-bold {% if request.path == s %} active {% endif %}">Sentiment Based
+                            Test</a></li>
+                    {% url 'about' as a %}
+                    <li><a href="{{a}}"
+                            class="hover-link semi-bold {% if request.path == a %} active {% endif %}">About</a></li>
+                    {% url 'contact' as c %}
+                    <li><a href="{{c}}"
+                            class="hover-link semi-bold {% if request.path == c %} active {% endif %}">Contact</a></li>
+
+                    {% if user.is_authenticated %}
+                    
+                    <div class=" flex name">
+                        <!-- <p class="semi-bold">Hello</p> -->
+                        <a class="hover-link primary-button " href="/profile/{{user.get_username}}" class="hover-link ">Hello {{user.first_name}}</a>
+                    </div>
+
+                    <!-- <li><a href="/signout" class="hover-link primary-button ">SignOut</a></li> -->
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br><br>
+
+
+</body>
+
+</html>
